@@ -14,8 +14,8 @@ export default function PrintChatPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Get agent name based on dude mode
-  const dudeMode = (workspace?.settings?.dude_mode as boolean) ?? true;
+  // Get agent name based on dude mode (defaults to OFF)
+  const dudeMode = (workspace?.settings?.dude_mode as boolean) ?? false;
   const storedAgentName = workspace?.settings?.agent_name as string | undefined;
   const defaultAgentName = dudeMode ? 'The Dude' : 'AI Agent';
   const agentName = storedAgentName || defaultAgentName;

@@ -59,7 +59,7 @@ async def register(
 
     Creates:
     - User account
-    - Default workspace ("My Workspace") with dude_mode enabled
+    - Default workspace ("My Workspace") with dude_mode disabled
     - User-level API key (works for all workspaces the user owns)
 
     Returns user info plus provisioning details including the raw API key.
@@ -91,11 +91,11 @@ async def register(
     db.add(user)
     await db.flush()  # Get user.id without committing
 
-    # Create default workspace with dude_mode enabled
+    # Create default workspace with dude_mode disabled by default
     workspace = Workspace(
         name="My Workspace",
         owner_id=user.id,
-        settings={"dude_mode": True},
+        settings={"dude_mode": False},
     )
     db.add(workspace)
     await db.flush()  # Get workspace.id
@@ -319,11 +319,11 @@ async def oauth_login(
             db.add(user)
             await db.flush()
 
-            # Create default workspace with dude_mode enabled
+            # Create default workspace with dude_mode disabled by default
             workspace = Workspace(
                 name="My Workspace",
                 owner_id=user.id,
-                settings={"dude_mode": True},
+                settings={"dude_mode": False},
             )
             db.add(workspace)
             await db.flush()

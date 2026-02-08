@@ -42,8 +42,8 @@ export default function WorkspaceSettings({
   const [projectContext, setProjectContext] = useState('');
   const { enabled: soundEnabled, setEnabled: setSoundEnabled } = useNotificationSound();
 
-  // Dude Mode state from workspace settings
-  const dudeMode = (workspace?.settings?.dude_mode as boolean) ?? true;
+  // Dude Mode state from workspace settings (defaults to OFF)
+  const dudeMode = (workspace?.settings?.dude_mode as boolean) ?? false;
 
   // Simple command to link this workspace to a project
   const projectConfigCommand = `echo "MAI_TAI_WORKSPACE_ID=${workspaceId}" > .env.mai-tai`;

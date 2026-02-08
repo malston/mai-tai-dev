@@ -114,28 +114,28 @@ See `.env.example` for all configuration options. Key settings:
 | `NEXTAUTH_SECRET` | NextAuth session encryption |
 | `EXTRA_CORS_ORIGIN` | Additional CORS origin for LAN access |
 
-### CORS / LAN Access
+### LAN Access (Optional)
 
-By default, Mai-Tai only accepts requests from `localhost`. To access from other devices on your network (e.g., your phone), update these settings in `.env`:
+> **Note:** Mai-Tai runs 100% locally on your machine. This section is only needed if you want to access it from **other devices on your local network** (like your phone). This does NOT expose anything to the internet.
+
+By default, Mai-Tai only accepts connections from `localhost`. To access from other devices on your home/office network:
 
 ```bash
-# Find your machine's LAN IP (e.g., 192.168.1.100)
-ip addr | grep "192.168"
+# 1. Find your machine's LAN IP (e.g., 192.168.1.100)
+ip addr | grep "192.168"    # Linux
+ipconfig getifaddr en0      # macOS
 
-# Update .env with your IP:
+# 2. Update .env with your IP:
 NEXT_PUBLIC_API_URL=http://192.168.1.100:8000
 NEXT_PUBLIC_WS_URL=ws://192.168.1.100:8000
 EXTRA_CORS_ORIGIN=http://192.168.1.100:3000
 NEXTAUTH_URL=http://192.168.1.100:3000
-```
 
-Then rebuild the frontend (required because `NEXT_PUBLIC_*` vars are baked into the build):
-
-```bash
+# 3. Rebuild and restart
 ./dev.sh local rebuild
 ```
 
-Now access Mai-Tai at `http://192.168.1.100:3000` from any device on your network.
+Now access Mai-Tai at `http://192.168.1.100:3000` from any device on your local network (phone, tablet, another computer, etc.).
 
 ## Contributing
 

@@ -54,7 +54,7 @@ export default function LandingPage() {
                 href="/register"
                 className="inline-block rounded-lg bg-indigo-600 px-8 py-3 text-center text-lg font-medium text-white transition hover:bg-indigo-500"
               >
-                Get Started — It's Free
+                Get Started
               </Link>
             </div>
           </div>
@@ -171,14 +171,14 @@ export default function LandingPage() {
         <div className="mx-auto max-w-2xl px-4 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">Ready to try it?</h2>
           <p className="mt-4 text-lg text-gray-400">
-            Free for now, just for the boys. No credit card, no hassle.
+            100% local. Runs entirely on your machine. No data leaves your network.
           </p>
           <div className="mt-8">
             <Link
               href="/register"
               className="inline-block rounded-lg bg-indigo-600 px-8 py-3 text-lg font-medium text-white transition hover:bg-indigo-500"
             >
-              Sign Up Free
+              Get Started
             </Link>
           </div>
         </div>
