@@ -1,0 +1,68 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: maitai-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-maitai}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-maitai_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-maitai}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-maitai}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: maitai-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - APP_ENV=${APP_ENV:-development}
+      - DEBUG=${DEBUG:-true}
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-maitai}:${POSTGRES_PASSWORD:-maitai_dev_password}@postgres:5432/${POSTGRES_DB:-maitai}
+      - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
+      # For LAN access, set EXTRA_CORS_ORIGIN to your machine's IP (e.g., http://192.168.1.100:3000)
+      - EXTRA_CORS_ORIGIN=${EXTRA_CORS_ORIGIN:-}
+      # Allow all CORS origins (for dev/LAN testing)
+      - CORS_ALLOW_ALL=${CORS_ALLOW_ALL:-false}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: maitai-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+      - NEXT_PUBLIC_WS_URL=${NEXT_PUBLIC_WS_URL:-ws://localhost:8000}
+      - INTERNAL_API_URL=http://backend:8000
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET:-dev-secret-change-me}
+      - NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:3000}
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+

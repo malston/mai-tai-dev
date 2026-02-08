@@ -1,0 +1,30 @@
+<h1>Configuring Claude Desktop</h1>
+<p className="lead">Connect Claude Desktop to Mai-Tai.</p>
+
+<h2>Step 1: Open Config File</h2>
+<ul>
+  <li><strong>macOS:</strong> <code>~/Library/Application Support/Claude/claude_desktop_config.json</code></li>
+  <li><strong>Windows:</strong> <code>%APPDATA%\Claude\claude_desktop_config.json</code></li>
+</ul>
+
+<h2>Step 2: Add MCP Server</h2>
+<pre><code className="language-json">{`{
+  "mcpServers": {
+    "mai-tai": {
+      "command": "uvx",
+      "args": ["mai-tai-mcp"],
+      "env": {
+        "MAI_TAI_API_URL": "https://api.mai-tai.dev",
+        "MAI_TAI_API_KEY": "mt_your_api_key_here",
+        "MAI_TAI_WORKSPACE_ID": "your-workspace-id"
+      }
+    }
+  }
+}`}</code></pre>
+
+<h2>Step 3: Restart &amp; Start</h2>
+<ol>
+  <li>Restart Claude Desktop</li>
+  <li>Tell Claude: <code>"start mai-tai mode"</code></li>
+</ol>
+

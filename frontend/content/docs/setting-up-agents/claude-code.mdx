@@ -1,0 +1,24 @@
+<h1>Configuring Claude Code</h1>
+<p className="lead">Connect Claude Code (CLI) to Mai-Tai.</p>
+
+<h2>Setup Command</h2>
+<p>Run this in your terminal:</p>
+<pre><code className="language-bash">{`claude mcp add mai-tai \
+  -e MAI_TAI_API_URL=https://api.mai-tai.dev \
+  -e MAI_TAI_API_KEY=mt_your_api_key_here \
+  -e MAI_TAI_WORKSPACE_ID=your-workspace-id \
+  -- uvx mai-tai-mcp`}</code></pre>
+
+<h2>Start Mai-Tai Mode</h2>
+<p>Then tell Claude:</p>
+<pre><code>"start mai-tai mode"</code></pre>
+
+<div className="rounded-lg bg-indigo-900/30 p-4 border border-indigo-700">
+  <p className="text-indigo-300 m-0">
+    <strong>💡 Tip:</strong> Get your Workspace ID from Settings → API Keys in your workspace.
+  </p>
+</div>
+
+<h2>Test Connection</h2>
+<p>Tell Claude: <code>&quot;start mai-tai mode&quot;</code></p>
+
