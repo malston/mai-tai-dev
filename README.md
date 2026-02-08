@@ -45,13 +45,14 @@ The first user to register automatically becomes an admin.
 
 ### Connect an AI agent
 
-Install the MCP server in your agent:
+Once running, go to the web UI at http://localhost:3000, create an account, and follow the onboarding flow. It will generate a setup blob that you paste to your agent - the agent handles the rest.
 
+The MCP server runs via `uvx` (no pip install needed):
 ```bash
-pip install mai-tai-mcp
+uvx --refresh mai-tai-mcp
 ```
 
-Configure your agent with your API key from Settings → API Keys.
+This is automatically configured when your agent executes the setup blob.
 
 ## Development
 
