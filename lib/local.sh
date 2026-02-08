@@ -128,6 +128,7 @@ local_cmd() {
             echo "  3. Delete Docker networks"
             echo "  4. Kill any running mai-tai-mcp processes"
             echo "  5. Remove project-level MCP config (.env.mai-tai files)"
+            echo "  6. Remove global MCP config (~/.config/mai-tai/)"
             echo ""
             read -p "Are you absolutely sure? (type 'nuke' to confirm): " -r
             echo
@@ -146,6 +147,9 @@ local_cmd() {
 
                 log_info "Step 5: Removing project-level MCP configs..."
                 find . -name ".env.mai-tai" -type f -delete 2>/dev/null || true
+
+                log_info "Step 6: Removing global MCP config..."
+                rm -rf ~/.config/mai-tai 2>/dev/null || true
 
                 echo ""
                 log_info "💀 Everything nuked!"
