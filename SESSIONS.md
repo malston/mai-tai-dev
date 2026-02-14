@@ -6,7 +6,7 @@ Tracking feedback and work on this fork of [jmcdice/mai-tai-dev](https://github.
 
 ### High Priority -- Trust/Perception
 
-- [ ] **1. Clarify that accounts are local-only** -- Registration page uses "Create your account", "Sign up", "or sign up with" language that implies a cloud service. Landing page has "Sign Up" and "Get Started" CTAs. Change wording to emphasize local-only. Key files:
+- [x] **1. Clarify that accounts are local-only** -- Registration page uses "Create your account", "Sign up", "or sign up with" language that implies a cloud service. Landing page has "Sign Up" and "Get Started" CTAs. Change wording to emphasize local-only. Key files:
   - `frontend/app/register/page.tsx` -- "Create your account" heading, "Create account" button, "or sign up with", "Signing up..."
   - `frontend/app/login/page.tsx` -- "Sign up" link
   - `frontend/app/(public)/landing/page.tsx` -- "Sign Up" nav button, "Get Started" CTAs
@@ -18,7 +18,7 @@ Tracking feedback and work on this fork of [jmcdice/mai-tai-dev](https://github.
 ### Medium Priority -- UX Confusion
 
 - [x] **4. Default Dude Mode to off** -- ALREADY DONE. Backend sets `dude_mode: False` on workspace creation for both email/password and OAuth registration (`backend/app/api/v1/auth.py`). Michael's confusion was likely from an earlier version or from not understanding what "the Dude" was.
-- [ ] **5. Add "100% local" messaging in the UI** -- The landing page already has "100% local. Runs entirely on your machine. No data leaves your network." but the registration page has nothing. Add local-only messaging to the registration/login flows where trust matters most.
+- [x] **5. Add "100% local" messaging in the UI** -- The landing page already has "100% local. Runs entirely on your machine. No data leaves your network." but the registration page has nothing. Add local-only messaging to the registration/login flows where trust matters most.
 
 ### Lower Priority
 

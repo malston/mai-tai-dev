@@ -110,7 +110,7 @@ export default function RegisterPage() {
   useEffect(() => {
     const errorParam = searchParams.get("error");
     if (errorParam) {
-      setError("OAuth sign-up failed. Please try again.");
+      setError("OAuth authentication failed. Please try again.");
     }
   }, [searchParams]);
 
